@@ -36,7 +36,7 @@ CREATE TABLE Paciente (
     nome_Paciente VARCHAR(50) NOT NULL,
     nomeEnfermeiro_Paciente VARCHAR(50) NOT NULL,
     dataNascimento_Paciente DATE NOT NULL,
-    cpf_Paciente VARCHAR(11) NOT NULL,
+    cpf_Paciente CHAR(15) NOT NULL,
     numeroQuarto_Paciente INT NOT NULL,
     idPulseira_Paciente INT NOT NULL
 );
@@ -63,11 +63,18 @@ CREATE TABLE EntradaSaidaPaciente (
 		horaSaida_Paciente TIME NOT NULL
 );
 
-CREATE TABLE Cama (
-	id_Cama INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    numeroQuarto_Cama INT NOT NULL,
-    cama_Quarto VARCHAR(50) NOT NULL
+CREATE TABLE Leito (
+	id_Leito INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    numeroQuarto_Leito INT NOT NULL,
+    cama_Leito VARCHAR(50) NOT NULL
 );
+
+ALTER TABLE Hospital ADD COLUMN telefone_Hospital VARCHAR(15);
+
+ALTER TABLE Enfermeiro MODIFY COLUMN senha_Enfermeiro VARCHAR(50);
+
+ALTER TABLE RegistroTemperatura ADD CONSTRAINT chkTemperatura
+	CHECK (temperatura_RegistroTemperatura BETWEEN 30 AND 45);
 
 
 

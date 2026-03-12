@@ -6,11 +6,11 @@ INSERT INTO Hospital (razaoSocial_Hospital, endereco_Hospital, email_Hospital, s
 ('Hospital de Câncer', 'Rua das Flores, 750', 'info@hospitaldecancer.com.br', 'senhadef', 60);
 
 INSERT INTO Enfermeiro (nome_Enfermeiro, numeroCracha_Enfermeiro, senha_Enfermeiro, cargo_Enfermeiro) VALUES
-('Ana Souza', 101, 'senhaAna', 'Enfermeira Chefe'),
-('Bruno Silva', 102, 'senhaBruno', 'Enfermeiro Assistente'),
-('Carla Oliveira', 103, 'senhaCarla', 'Enfermeira de UTI'),
-('Daniel Costa', 104, 'senhaDaniel', 'Enfermeiro de Pediatria'),
-('Fernanda Lima', 105, 'senhaFernanda', 'Enfermeira de Cirurgia');
+('Ana Souza', 101, 'senhaAna', 'Enfermeiro-Chefe'),
+('Bruno Silva', 102, 'senhaBruno', 'Enfermeiro'),
+('Carla Oliveira', 103, 'senhaCarla', 'Enfermeiro'),
+('Daniel Costa', 104, 'senhaDaniel', 'Enfermeiro'),
+('Fernanda Lima', 105, 'senhaFernanda', 'Enfermeiro-Chefe');
 
 INSERT INTO Paciente (nome_Paciente, nomeEnfermeiro_Paciente, dataNascimento_Paciente, cpf_Paciente, numeroQuarto_Paciente, idPulseira_Paciente) VALUES
 ('João Pereira', 'Ana Souza', '1985-05-15', '12345678901', 101, 1),
@@ -33,14 +33,14 @@ INSERT INTO RegistroTemperatura (temperatura_RegistroTemperatura, data_RegistroT
 (36, '2023-10-01', '08:30:00', 'Juliana Mendes', 4),
 (37, '2023-10-01', '09:30:00', 'Fernanda Rocha', 5);
 
-INSERT INTO EntradaSaidaPaciente (dataEntrada_EntradaSaidaPaciente, horaEntrada_EntradaSaidaPaciente, dataSaida_EntradaSaidaPaciente, horaSaida_EntradaSaidaPaciente) VALUES
+INSERT INTO EntradaSaidaPaciente (dataEntrada_Paciente, horaEntrada_Paciente, dataSaida_Paciente, horaSaida_Paciente) VALUES
 ('2023-10-01', '08:00:00', '2023-10-05', '09:00:00'),
 ('2023-10-02', '09:00:00', '2023-10-06', '10:00:00'),
 ('2023-10-01', '10:00:00', '2023-10-08', '11:00:00'),
 ('2023-10-03', '08:30:00', '2023-10-07', '09:30:00'),
 ('2023-10-01', '07:00:00', '2023-10-05', '08:00:00');
 
-INSERT INTO Cama (numeroQuarto_Cama, cama_Quarto) VALUES
+INSERT INTO Leito (numeroQuarto_Leito, cama_Leito) VALUES
 ('101', 'Cama 1'),
 ('101', 'Cama 2'),
 ('102', 'Cama 1'),
