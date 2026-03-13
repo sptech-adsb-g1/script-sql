@@ -1,0 +1,141 @@
+CREATE DATABASE LifeSaver;
+USE LifeSaver;
+
+CREATE TABLE Hospital (idHospital INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+razaoSocial_Hospital VARCHAR (100) NOT NULL,
+endereco_Hospital VARCHAR (100) NOT NULL,
+email_Hospital VARCHAR (50) UNIQUE NOT NULL,
+senha_Hospital VARCHAR (20) NOT NULL,
+qtdPulseira_Hospital INT NOT NULL);
+
+INSERT INTO Hospital (razaoSocial_Hospital, endereco_Hospital, email_Hospital, senha_Hospital, qtdPulseira_Hospital) VALUES
+('Hospital São Paulo', 'Av. Paulista ,1000', 'contato@hospitalsaopaulo.com.br', 'senha123', 50),
+('Hospital das Clínicas', 'Rua Dr.Arnaldo, 1250', 'info@hcdasclinicas.com.br', 'senha456', 30),
+('Hospital Universitário', 'Rua Universitária, 500', 'suporte@hu.com.br', 'senha789', 40),
+('Hospital Regional', 'Av. Brasil, 200', 'contato@hospitalregional.com.br', 'senhaabc', 20),
+('Hospital de Cancêr', 'Rua das Flores, 750', 'info@hospitaldecancer.com.br', 'senhadef', 60);
+
+SELECT* FROM Hospital;
+
+SELECT razaoSocial_Hospital, email_Hospital FROM Hospital;
+
+SELECT* FROM Hospital WHERE qtdPulseira_Hospital > 40;
+
+CREATE TABLE Enfermeiro (id_Enfermeiro INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+nome_Enfermeiro VARCHAR (50) NOT NULL,
+numeroCracha_Enfermeiro INT NOT NULL,
+senha_Enfermeiro VARCHAR (20) NOT NULL,
+cargo_Enfermeiro VARCHAR (50) NOT NULL);
+
+INSERT INTO Enfermeiro ( nome_Enfermeiro, numeroCracha_Enfermeiro, senha_Enfermeiro, cargo_Enfermeiro) VALUES
+('Ana Souza', 101, 'senhaAna', 'Enfermeira Chefe'),
+('Bruno Silva', 102, 'senhaBruno', 'Enfermeiro de UTI'),
+('Carla oliveira', 103, 'senhaCarla', 'Enfermeira de UTI'),
+('Daniel Costa', 104, 'senhaDaniel', 'Enfermeiro de UTI'),
+('Fernanda Lima', 105, 'senhaFernanda', 'Enfermeira Chefe'); 
+
+SELECT* FROM Enfermeiro;
+
+SELECT nome_Enfermeiro, cargo_Enfermeiro FROM Enfermeiro;
+
+SELECT* FROM Enfermeiro WHERE cargo_Enfermeiro = 'Enfermeira de UTI';
+
+CREATE TABLE Paciente (id_Paciente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+nome_Paciente VARCHAR (50) NOT NULL,
+nomeEnfermeiro_Paciente VARCHAR (50) NOT NULL,
+dataNascimento_Paciente DATE NOT NULL,
+cpf_Paciente VARCHAR (11) NOT NULL,
+numeroQuarto_Paciente INT NOT NULL,
+idPulseira_Paciente INT NOT NULL);
+
+
+INSERT INTO Paciente (nome_Paciente, nomeEnfermeiro_Paciente, dataNascimento_Paciente, cpf_Paciente, numeroQuarto_Paciente, idPulseira_Paciente) VALUES
+('João Pereira', 'Ana Souza', '1985-05-15', '12345678901', 101, 1),
+('Maria Ferreira', 'Bruno Silva', '1990-10-20', '23456789012', 102, 2),
+('Carlos Almeida', 'Carla Oliveira', '1978-02-25', '34567890123', 201, 3),
+('Juliana Mendes', 'Daniel Costa', '1983-07-30', '45678901234', 202, 4),
+('Fernanda Rocha', 'Fernanda Lima', '1995-01-05', '56789012345', 301, 5);
+
+SELECT* FROM Paciente;
+
+SELECT nome_Paciente, nomeEnfermeiro_Paciente FROM Paciente;
+
+SELECT* FROM Paciente WHERE dataNascimento_Paciente < '1985-01-01';
+
+CREATE TABLE Pulseira (numero_Pulseira INT PRIMARY KEY AUTO_INCREMENT NOT NULL, 
+intervaloMedicao_pulseira INT NOT NULL);
+
+INSERT INTO Pulseira (intervaloMedicao_pulseira) VALUES
+(5),
+(10),
+(15),
+(30),
+(60);
+
+SELECT* FROM Pulseira;
+
+SELECT numero_Pulseira, intervaloMedicao_pulseira FROM Pulseira;
+
+SELECT* FROM Pulseira WHERE intervaloMedicao_Pulseira < 15;
+
+CREATE TABLE RegistroTemperatura ( id INT PRIMARY KEY AUTO_INCREMENT NOT NULL, 
+temperatura_RegistroTemperatura INT NOT NULL, 
+data_RegistroTemperatura DATE NOT NULL,
+hora_RegistroTemperatura TIME NOT NULL,
+nome_Paciente VARCHAR (50) NOT NULL,
+numero_Pulseira INT NOT NULL);
+
+INSERT INTO RegistroTemperatura (temperatura_RegistroTemperatura, data_RegistroTemperatura, hora_RegistroTemperatura, nome_Paciente, numero_Pulseira) VALUES
+(36, '2023-10-01', '08:00:00', 'João Pereira', 1),
+(37, '2023-10-01', '09:00:00', 'Maria Ferreira', 2),
+(38, '2023-10-01', '10:00:00', 'Carlos Almeida', 3),
+(36, '2023-10-01', '08:30:00', 'Juliana Mendes', 4),
+(37, '2023-10-01', '09:30:00', 'Fernanda Rocha', 5);
+
+SELECT* FROM RegistroTemperatura;
+
+SELECT temperatura_RegistroTemperatura, data_RegistroTemperatura, hora_RegistroTemperatura FROM RegistroTemperatura WHERE nome_Paciente = 'João Pereira';
+ 
+ SELECT* FROM RegistroTemperatura WHERE temperatura_RegistroTemperatura > 37;
+ 
+ CREATE TABLE EntradaSaidaPaciente ( id_EntradaSaidaPaciente INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+ dataEntrada_EntradaSaidaPaciente DATE NOT NULL, 
+ horaEntrada_EntradaSaidaPaciente TIME NOT NULL,
+ dataSaida_EntradaSaidaPaciente DATE NOT NULL,
+ horaSaida_EntradaSaidaPaciente TIME NOT NULL);
+ 
+ INSERT INTO EntradaSaidaPaciente (dataEntrada_EntradaSaidaPaciente, horaEntrada_EntradaSaidaPaciente, dataSaida_EntradaSaidaPaciente, horaSaida_EntradaSaidaPaciente) VALUES
+ ('2023-10-01', '08:00:00', '2023-10-05', '09:00:00'),
+ ('2023-10-02', '09:00:00', '2023-10-06', '10:00:00'),
+ ('2023-10-01', '10:00:00', '2023-10-08', '11:00:00'),
+ ('2023-10-03', '08:30:00', '2023-10-07', '09:30:00'),
+ ('2023-10-01', '07:00:00', '2023-10-05', '08:00:00');
+ 
+ 
+ SELECT* FROM EntradaSaidaPaciente;
+ 
+ SELECT* FROM EntradaSaidaPaciente WHERE MONTH (dataSaida_EntradaSaidaPaciente) = 10;
+ 
+ SELECT dataEntrada_EntradaSaidaPaciente, horaSaida_EntradaSaidaPaciente FROM EntradaSaidaPaciente WHERE horaSaida_EntradaSaidaPaciente = '09:00:00';
+ 
+ CREATE TABLE Cama ( id_Cama INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+ numeroQuarto_Cama INT NOT NULL,
+ camaQuarto VARCHAR (50) NOT NULL);
+ 
+ INSERT INTO Cama (numeroQuarto_Cama, camaQuarto) VALUES
+ ('101', 'Cama 1'),
+ ('101', 'Cama 2'),
+ ('102', 'Cama 1'),
+ ('201', 'Cama 1'),
+ ('202', 'Cama 1');
+ 
+ 
+SELECT* FROM Cama;
+
+SELECT camaQuarto FROM Cama WHERE numeroQuarto_Cama = 101;
+
+SELECT numeroQuarto_Cama AS totalCamas FROM Cama ORDER BY numeroQuarto_Cama DESC;
+
+
+
+
